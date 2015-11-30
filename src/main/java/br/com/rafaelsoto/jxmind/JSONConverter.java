@@ -6,6 +6,11 @@ import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * Executable class to open, parse and convert a Xmind File in Json format
+ * @author rafaelsoto
+ *
+ */
 public class JSONConverter {
 
 	public static void main(String[] args) throws JxmindException {

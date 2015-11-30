@@ -39,6 +39,11 @@ public class ParseXmind {
         treeWalk(document.getRootElement(),parentNode);
     }
 
+	/**
+	 * Recursive method to walk on the Xmind XML Tree Document
+	 * @param element - the element to walk
+	 * @param parentNode - the parent element reference
+	 */
     public void treeWalk(Element element, XmindNode parentNode) {
     	
     	XmindNode currentNode;  	
@@ -46,12 +51,13 @@ public class ParseXmind {
         for ( int i = 0, size = element.nodeCount(); i < size; i++ ) {
             Node node = element.node(i);
             
-            //First node on xmind file is a sheet
+            //First node on xmind file is a sheet we need goes to child element
             if(node.getName() != null && node.getName().equalsIgnoreCase("sheet"))
             {
             	this.treeWalk((Element) node, parentNode);
             }
             
+            //We are interesting on a topic Element only
             else if ( node instanceof Element && node.getName().equalsIgnoreCase("topic")) {
 
             	currentNode = new XmindNode();
@@ -73,6 +79,12 @@ public class ParseXmind {
         }
     }
 
+    /**
+     * Find each child elements to find a element by @String
+     * @param element
+     * @param elementName
+     * @return
+     */
 	private Node searchElementByText(Element element, String elementName)
 	{
 		// System.out.println(element.getName());
